@@ -24,6 +24,7 @@ import org.openqa.selenium.internal.FindsByXPath;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import de.clearit.test.common.WebdriverUtils;
+import de.clearit.test.data.Browser;
 
 public class WebDriverWrapper implements WebDriver, JavascriptExecutor, FindsById, FindsByClassName, FindsByLinkText,
       FindsByName, FindsByCssSelector, FindsByTagName, FindsByXPath, HasInputDevices, HasCapabilities, TakesScreenshot
@@ -44,8 +45,8 @@ public class WebDriverWrapper implements WebDriver, JavascriptExecutor, FindsByI
    /* browserInfo */
    private final String browserInfo;
 
-   /* ob IE */
-   private boolean isIE = false;
+   /* Browser */
+   private Browser browser = Browser.FIREFOX;
 
    /**
     * Constructor.
@@ -59,12 +60,12 @@ public class WebDriverWrapper implements WebDriver, JavascriptExecutor, FindsByI
     * @param isIE
     *           - ob IE
     */
-   public WebDriverWrapper(final RemoteWebDriver webDriver, String browserInfo, boolean local, boolean isIE)
+   public WebDriverWrapper(final RemoteWebDriver webDriver, String browserInfo, boolean local, Browser browser)
    {
       this.local = local;
       this.webDriver = webDriver;
       this.browserInfo = browserInfo;
-      this.isIE = isIE;
+      this.browser = browser;
    }
 
    @Override
@@ -328,8 +329,8 @@ public class WebDriverWrapper implements WebDriver, JavascriptExecutor, FindsByI
       return browserInfo;
    }
 
-   public boolean isIE()
+   public Browser getBrowser()
    {
-      return isIE;
+      return browser;
    }
 }

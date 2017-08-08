@@ -22,6 +22,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import de.clearit.test.data.Browser;
 import de.clearit.test.framework.PropertyManager;
 
 /**
@@ -125,8 +126,10 @@ public class WebdriverUtils
     * 
     * @return ob in IE ausgeführt wird
     */
-   public static boolean isIE()
+   public static Browser getTargetBrowser()
    {
-      return System.getProperty("ie", "false").equals("true");
+	   String browser = System.getProperty("browser", "firefox");
+	   
+      return Browser.valueOf(browser.toUpperCase());
    }
 }

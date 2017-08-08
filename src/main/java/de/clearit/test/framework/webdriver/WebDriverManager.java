@@ -4,9 +4,11 @@ import java.net.URL;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import de.clearit.test.data.Browser;
 import de.clearit.test.framework.PropertyManager;
 
 /**
@@ -45,9 +47,9 @@ public final class WebDriverManager
     * @return den gestarteten WebDriver
     * 
     */
-   public static WebDriverWrapper createDriver(String grid, String gridHint, final boolean isIE, String url)
+   public static WebDriverWrapper createDriver(String grid, String gridHint, final Browser browser, String url)
    {
-      WebDriverWrapper driver = erzeugeWebDriverMitRetry(isIE, url, grid);
+      WebDriverWrapper driver = erzeugeWebDriverMitRetry(browser, url, grid);
       logger.info("Browser (" + (useNoProxy() ? "no Proxy" : "via Proxy") + ") "
             + (isLocal() ? "Lokaler" : "Remote/" + gridHint) + " Rechner: '" + driver.getIpOfNode() + "'");
       return driver;
@@ -96,57 +98,55 @@ public final class WebDriverManager
    }
 
    /**
-    * Rausfinden ob in IE ausgeführt wird
+    * Rausfinden welche Browser benutzt wird
     * 
     * @param driver
     *           - driver
     * 
-    * @return ob in IE ausgeführt wird
+    * @return benutze Browser
     */
-   public static boolean isIE(WebDriver driver)
+   public static Browser getBrowser(WebDriver driver)
    {
       if (driver instanceof WebDriverWrapper)
       {
-         return ((WebDriverWrapper) driver).isIE();
+         return ((WebDriverWrapper) driver).getBrowser();
       }
-      return false;
+      return Browser.FIREFOX;
    }
 
-   private static WebDriverWrapper erzeugeWebDriverMitRetry(final boolean isIE, String url, String grid)
+   private static WebDriverWrapper erzeugeWebDriverMitRetry(final Browser browser, String url, String grid)
    {
       WebDriverWrapper driver = null;
-      driver = WebDriverManager.startDriver(url, isLocal(), grid, isIE);
+      driver = WebDriverManager.startDriver(url, isLocal(), grid, browser);
       return driver;
    }
 
    private static WebDriverWrapper startDriver(String url, final boolean local, final String seleniumGridUrl,
-         boolean isIE)
+		   final Browser browser)
    {
       Validate.notEmpty(url, "Url ist nicht gesetzt.");
 
       RemoteWebDriver driver = null;
-      String browser = "";
       String remoteOderLokal = local ? "Lokaler" : "Remote";
       boolean useNoProxy = useNoProxy();
       String proxyOderDirekt = useNoProxy ? "(kein Proxy)" : "(via Proxy)";
-      if (isIE)
+      PropertyManager properties = PropertyManager.getInstance();
+      switch (browser)
       {
-         PropertyManager properties = PropertyManager.getInstance();
+      case IE:
          String iePath = properties.getProperty("webdriver.iedriver.path");
          System.setProperty("webdriver.ie.driver", iePath);
-
-         browser = "InternetExplorer";
          driver = IEWebDriverCreator.createIEWebDriver(url, local, useNoProxy, seleniumGridUrl);
-      }
-      else
-      {
-         browser = "Firefox";
+	     break;
+      default:
+         String firefox = properties.getProperty("webdriver.geckodriver.path");
+         System.setProperty("webdriver.gecko.driver", firefox);
          driver = FireFoxWebDriverCreator.createFirefoxWebDriver(url, useNoProxy, local, seleniumGridUrl);
       }
       URL urlObject = UrlCreator.createURL(url);
       String browserInfo = String.format("%s %s%s auf %s:%s und %s", remoteOderLokal, browser, proxyOderDirekt,
             urlObject.getHost(), urlObject.getPort(), urlObject.getQuery());
-      return new WebDriverWrapper(driver, browserInfo, local, isIE);
+      return new WebDriverWrapper(driver, browserInfo, local, browser);
    }
 
    private static boolean useNoProxy()

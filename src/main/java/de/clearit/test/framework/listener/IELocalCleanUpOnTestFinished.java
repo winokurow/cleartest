@@ -4,6 +4,7 @@ import org.testng.ITestResult;
 
 import de.clearit.test.common.TestUtils;
 import de.clearit.test.common.WebdriverUtils;
+import de.clearit.test.data.Browser;
 
 public class IELocalCleanUpOnTestFinished extends BaseProjectTestListenerAdapter
 {
@@ -22,7 +23,7 @@ public class IELocalCleanUpOnTestFinished extends BaseProjectTestListenerAdapter
 
    private void killLocalIE()
    {
-      if (isLocal() && WebdriverUtils.isIE())
+      if (isLocal() && WebdriverUtils.getTargetBrowser().equals(Browser.IE))
       {
          if (TestUtils.isProcessRunningQuiet("IEDriverServer.exe"))
          {

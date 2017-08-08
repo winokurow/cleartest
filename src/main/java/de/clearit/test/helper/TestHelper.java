@@ -18,6 +18,7 @@ import com.sun.jna.platform.win32.Netapi32Util.User;
 import de.clearit.test.common.BasisLogger;
 import de.clearit.test.common.ScreenshotCreator;
 import de.clearit.test.common.TestUtils;
+import de.clearit.test.data.Browser;
 import de.clearit.test.exceptions.AllgemeineTechnischeException;
 import de.clearit.test.framework.AllTestListenerAdapters;
 import de.clearit.test.framework.ExecutionTimer;
@@ -114,7 +115,7 @@ public class TestHelper implements WebDriverHolder, WebDriverCleanUp
     * @param url
     *           - URL der Anwendung
     */
-   protected void erzeugeNeuenDriver(String url, boolean isIE)
+   protected void erzeugeNeuenDriver(String url, Browser browser)
    {
 
       // initialize Execution Timer
@@ -128,7 +129,7 @@ public class TestHelper implements WebDriverHolder, WebDriverCleanUp
       String grid = getProperties().getProperty("seleniumgrid.url");
       String gridHint = "Service Grid";
 
-      driver = WebDriverManager.createDriver(grid, gridHint, isIE, url);
+      driver = WebDriverManager.createDriver(grid, gridHint, browser, url);
       driversBeingUsedInTest.add(driver);
       aktiviereDynatraceMessung(driver);
    }

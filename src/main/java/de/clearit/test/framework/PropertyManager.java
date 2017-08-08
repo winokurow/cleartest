@@ -73,7 +73,8 @@ public class PropertyManager
    private void loadProperties()
    {
       // create and load default properties
-      loadPropertyFile("/general.properties");
+      loadPropertyFile("/defaultprop.properties");
+      loadPropertyFile("/localprop.properties");
       final String umgebung = System.getProperty("umgebung", "local");
 
       logger.info("Umgebung: " + umgebung);

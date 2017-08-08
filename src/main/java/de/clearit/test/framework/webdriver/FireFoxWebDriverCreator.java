@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.Proxy.ProxyType;
@@ -60,7 +61,6 @@ public final class FireFoxWebDriverCreator
       System.setProperty("firefox.bin", firefoxPath);
 
       FirefoxProfile profile = createFirefoxBaseProfile();
-      profile.setEnableNativeEvents(false);
       profile.setAcceptUntrustedCertificates(true);
       profile.setAssumeUntrustedCertificateIssuer(false);
       final DesiredCapabilities capabilities = DesiredCapabilities.firefox();
@@ -92,7 +92,9 @@ public final class FireFoxWebDriverCreator
       }
 
       driver.manage().deleteAllCookies();
-      driver.manage().window().maximize();
+      // TODO Workaround für Firefox < 44
+      //driver.manage().window().maximize();
+      
       driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
       driver.manage().timeouts().setScriptTimeout(50, TimeUnit.SECONDS);
       driver.get(url);

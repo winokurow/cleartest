@@ -181,25 +181,26 @@ public class SeitenladePruefer
       }
    }
 
-   /**
-    * Warten bis BlockUI weg ist.
-    */
-   private void waitForBlockUiReady()
-   {
-      WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-      if (driver.findElements(blockUI).size() > 0)
-      {
-
-         wait.until(new Predicate<WebDriver>()
-         {
-            @Override
-            public boolean apply(WebDriver driver)
-            {
-               return driver.findElements(blockUI).isEmpty();
-            }
-         });
-      }
-   }
+   // TODO Is not compatible with Selenium 3.0
+//   /**
+//    * Warten bis BlockUI weg ist.
+//    */
+//   private void waitForBlockUiReady()
+//   {
+//      WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+//      if (driver.findElements(blockUI).size() > 0)
+//      {
+//
+//         wait.until(new Predicate<WebDriver>()
+//         {
+//            @Override
+//            public boolean apply(WebDriver driver)
+//            {
+//               return driver.findElements(blockUI).isEmpty();
+//            }
+//         });
+//      }
+//   }
 
    /**
     * Überprüfen ob WebDriver gesetzt ist
