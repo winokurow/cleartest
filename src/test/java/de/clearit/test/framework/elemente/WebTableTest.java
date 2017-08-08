@@ -23,7 +23,7 @@ public class WebTableTest
 	      WebDriver driver = initialize("pageTable");
 	      WebTable table = new WebTable(driver, By.id("table"));
 	      table.clickRowContains("Zeile12Zeile22", true);
-	      GuiElement element1 = new GuiElement(By.id("text"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("text"), driver);
 	      Assert.assertEquals(element1.getText(), "row1");
 	   }
 	@Test
@@ -32,7 +32,7 @@ public class WebTableTest
 	      WebDriver driver = initialize("pageTable");
 	      WebTable table = new WebTable(driver, By.id("table"));
 	      table.clickRowContains("Zeile12Zeile22", false);
-	      GuiElement element1 = new GuiElement(By.id("text"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("text"), driver);
 	      Assert.assertEquals(element1.getText(), "row1");
 	   }
 	@Test
@@ -43,7 +43,7 @@ public class WebTableTest
 	      table.clickRowContains("Zeile12Zeile22", By.tagName("button"), false);
 	      //GuiElement element = new GuiElement(By.id("button12"), driver);
 	      //element.click();
-	      GuiElement element1 = new GuiElement(By.id("text2"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("text2"), driver);
 	      Assert.assertEquals(element1.getText(), "button2");
 	   }
 	@Test
@@ -54,9 +54,9 @@ public class WebTableTest
 	      table.clickRowContains("Zeile12Zeile22", null, false);
 	      //GuiElement element = new GuiElement(By.id("button12"), driver);
 	      //element.click();
-	      GuiElement element1 = new GuiElement(By.id("text"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("text"), driver);
 	      Assert.assertEquals(element1.getText(), "row1");
-	      GuiElement element2 = new GuiElement(By.id("text2"), driver);
+	      WebBaseElement element2 = new WebBaseElement(By.id("text2"), driver);
 	      Assert.assertEquals(element2.getText(), "visibletext");
 	   }
 	

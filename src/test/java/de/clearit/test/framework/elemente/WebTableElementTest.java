@@ -26,9 +26,9 @@ public class WebTableElementTest
 	      WebTableElement element = WebTableElement.mit(driver, "table", "button1%s");
 	      element.click("Zeile12");
 	     
-	      GuiElement element1 = new GuiElement(By.id("text"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("text"), driver);
 	      Assert.assertEquals(element1.getText(), "row1");
-	      GuiElement element2 = new GuiElement(By.id("text2"), driver);
+	      WebBaseElement element2 = new WebBaseElement(By.id("text2"), driver);
 	      Assert.assertEquals(element2.getText(), "button1");
 	      
 	   }
@@ -39,11 +39,11 @@ public class WebTableElementTest
 	      WebDriver driver = initialize("pageTable");
 	      
 	      WebTableElement tableElement = WebTableElement.mit(driver, "table", "button1%s");
-	      GuiElement element = tableElement.guiElement("Zeile12");
+	      WebBaseElement element = tableElement.guiElement("Zeile12");
 	      element.click();
-	      GuiElement element1 = new GuiElement(By.id("text"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("text"), driver);
 	      Assert.assertEquals(element1.getText(), "row1");
-	      GuiElement element2 = new GuiElement(By.id("text2"), driver);
+	      WebBaseElement element2 = new WebBaseElement(By.id("text2"), driver);
 	      Assert.assertEquals(element2.getText(), "button1");
 	   }
 	

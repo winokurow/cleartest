@@ -125,7 +125,7 @@ public class WebTableElement implements WebDriverInjectable
     */
    public void click(final String... gesuchteSpaltenInZeile)
    {
-      GuiElement guiElement = guiElement(gesuchteSpaltenInZeile);
+      WebBaseElement guiElement = guiElement(gesuchteSpaltenInZeile);
       guiElement.waitForEnable();
       guiElement.scrollToElement();
       guiElement.clickAndWaitForPage();
@@ -138,7 +138,7 @@ public class WebTableElement implements WebDriverInjectable
     *           - Wenn nur ein Paramater übergeben wird, dann wird dieser mit 'contains' in der Zeile gesucht. Ansonsten
     *           müssen die gesuchten Spalten exakt passen.
     */
-   public GuiElement guiElement(final String... gesuchteSpaltenInZeile)
+   public WebBaseElement guiElement(final String... gesuchteSpaltenInZeile)
    {
       checkGesuchteSpaltenInZeile(gesuchteSpaltenInZeile);
       checkDriver();
@@ -146,7 +146,7 @@ public class WebTableElement implements WebDriverInjectable
       WebTable webTable = new WebTable(driver, By.id(webtableId));
       checkWebTable(webTable);
       int index = findIndex(webTable, gesuchteSpaltenInZeile);
-      GuiElement guiElement = new GuiElement(By.id(String.format(elementIdMitIndexPlatzhalter, index)), driver);
+      WebBaseElement guiElement = new WebBaseElement(By.id(String.format(elementIdMitIndexPlatzhalter, index)), driver);
       return guiElement;
    }
 
@@ -160,7 +160,7 @@ public class WebTableElement implements WebDriverInjectable
     */
    public boolean isEnabledFor(final String... gesuchteSpaltenInZeile)
    {
-      GuiElement guiElement = guiElement(gesuchteSpaltenInZeile);
+      WebBaseElement guiElement = guiElement(gesuchteSpaltenInZeile);
       guiElement.waitForVisible();
       return guiElement.isEnabled();
    }

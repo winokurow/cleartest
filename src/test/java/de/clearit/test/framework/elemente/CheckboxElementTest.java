@@ -18,7 +18,7 @@ public class CheckboxElementTest
 	   public void testCheck()
 	   {
 	      WebDriver driver = initialize("pageCheckbox");
-	      CheckboxElement element1 = new CheckboxElement(By.id("check"), driver);
+	      WebCheckboxElement element1 = new WebCheckboxElement(By.id("check"), driver);
 	      element1.check();
 	      
 	      Assert.assertTrue(element1.isChecked());
@@ -32,7 +32,7 @@ public class CheckboxElementTest
 	   public void testUncheck()
 	   {
 	      WebDriver driver = initialize("pageCheckbox");
-	      CheckboxElement element1 = new CheckboxElement(By.id("uncheck"), driver);
+	      WebCheckboxElement element1 = new WebCheckboxElement(By.id("uncheck"), driver);
 	      element1.uncheck();
 	      
 	      Assert.assertFalse(element1.isChecked());

@@ -29,7 +29,7 @@ import de.clearit.test.framework.webdriver.WebDriverWrapper;
  *
  * @author Ilja Winokurow
  */
-public class GuiElement implements WebDriverInjectable
+public class WebBaseElement implements WebDriverInjectable
 {
 
    private static final Logger logger = Logger.getLogger("GuiElement Klass");
@@ -60,7 +60,7 @@ public class GuiElement implements WebDriverInjectable
     *           - Locator des Elements (By)
     *
     */
-   public GuiElement(final By by)
+   public WebBaseElement(final By by)
    {
       this(by, null);
    }
@@ -73,7 +73,7 @@ public class GuiElement implements WebDriverInjectable
     * @param driver
     *           - WebDriver instance to use.
     */
-   public GuiElement(final By by, final WebDriver driver)
+   public WebBaseElement(final By by, final WebDriver driver)
    {
       this(by, driver, Long.parseLong(PropertyManager.getInstance().getProperty("html.element.timeout",
             String.valueOf(TIMEOUT_IN_SECONDS_DEFAULT))));
@@ -89,7 +89,7 @@ public class GuiElement implements WebDriverInjectable
     * @param description
     *           - die Beschreibung.
     */
-   public GuiElement(final By by, final WebDriver driver, String description)
+   public WebBaseElement(final By by, final WebDriver driver, String description)
    {
       this(by, driver, Long.parseLong(PropertyManager.getInstance().getProperty("html.element.timeout",
             String.valueOf(TIMEOUT_IN_SECONDS_DEFAULT))));
@@ -107,7 +107,7 @@ public class GuiElement implements WebDriverInjectable
     * @param timeOutInSeconds
     *           - WebDriver timeout for this element.
     */
-   public GuiElement(final By by, final WebDriver driver, final long timeOutInSeconds)
+   public WebBaseElement(final By by, final WebDriver driver, final long timeOutInSeconds)
    {
       this();
       this.by = by;
@@ -121,7 +121,7 @@ public class GuiElement implements WebDriverInjectable
     * Default constructor ohne Parameters ist verboten.
     *
     */
-   private GuiElement()
+   private WebBaseElement()
    {
    }
 
@@ -350,7 +350,7 @@ public class GuiElement implements WebDriverInjectable
     *           Anzahl der Backspace und Delete Tastendrücke
     * @return this GuiElement für Builder Pattern
     */
-   public GuiElement clearInput(int anzahlBackspaceUndDelete)
+   public WebBaseElement clearInput(int anzahlBackspaceUndDelete)
    {
       checkElement();
       sendKeysStaleRetry(createArray(Keys.BACK_SPACE, anzahlBackspaceUndDelete));
@@ -566,7 +566,7 @@ public class GuiElement implements WebDriverInjectable
     *           the driver to set
     * @return die Instanz des GuiElements
     */
-   public GuiElement withDriver(final WebDriver driver)
+   public WebBaseElement withDriver(final WebDriver driver)
    {
       setDriver(driver);
       return this;

@@ -18,7 +18,7 @@ public class GuiElementTest
 	   public void testKonstructor()
 	   {
 	      WebDriver driver = new HtmlUnitDriver();
-	      GuiElement element = new GuiElement(By.id("test"), driver, "Beschreibung");
+	      WebBaseElement element = new WebBaseElement(By.id("test"), driver, "Beschreibung");
 	      Assert.assertEquals(element.getDescription(), "Beschreibung");
 	   }
 
@@ -26,10 +26,10 @@ public class GuiElementTest
 	   public void testIsPresent()
 	   {
 	      WebDriver driver = initialize("pageCheckbox");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver, "Beschreibung");
 	      element1.checkElement();
 	      Assert.assertTrue(element1.isPresent());
-	      GuiElement element2 = new GuiElement(By.id("erstename"), driver, "Beschreibung");
+	      WebBaseElement element2 = new WebBaseElement(By.id("erstename"), driver, "Beschreibung");
 	      Assert.assertFalse(element2.isPresent());
 	   }
 
@@ -37,7 +37,7 @@ public class GuiElementTest
 	   public void testIsVisible()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver, "Beschreibung");
 	      element1.waitForVisible();
 	      Assert.assertTrue(element1.isVisible());
 	   }
@@ -46,7 +46,7 @@ public class GuiElementTest
 	   public void testWaitForVisible()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver, "Beschreibung");
 	      element1.waitForVisible(1L);
 	      Assert.assertTrue(element1.isVisible());
 	   }
@@ -55,9 +55,9 @@ public class GuiElementTest
 	   public void testWaitForEnable()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("disableButton"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("disableButton"), driver);
 	      element1.click();
-	      GuiElement element2 = new GuiElement(By.id("firstname"), driver, "Beschreibung");
+	      WebBaseElement element2 = new WebBaseElement(By.id("firstname"), driver, "Beschreibung");
 	      element2.waitForEnable();
 	      Assert.assertTrue(element2.isEnabled());
 	   }
@@ -66,9 +66,9 @@ public class GuiElementTest
 	   public void testWaitForDisable()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("disableButton"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("disableButton"), driver);
 	      element1.click();
-	      GuiElement element2 = new GuiElement(By.id("lastname"), driver, "Beschreibung");
+	      WebBaseElement element2 = new WebBaseElement(By.id("lastname"), driver, "Beschreibung");
 	      element2.waitForDisable();
 	      Assert.assertFalse(element2.isEnabled());
 	   }
@@ -77,7 +77,7 @@ public class GuiElementTest
 	   public void testClickAndWaitForPage()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("disableButton"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("disableButton"), driver);
 	      element1.clickAndWaitForPage();
 	   }
 
@@ -85,7 +85,7 @@ public class GuiElementTest
 	   public void testSendKeys()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      Assert.assertEquals(element1.getValue(), "sdsdsd");
 	   }
@@ -94,7 +94,7 @@ public class GuiElementTest
 	   public void testSendKeysEmpty()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys();
 	      Assert.assertEquals(element1.getValue(), "");
 	   }
@@ -103,7 +103,7 @@ public class GuiElementTest
 	   public void testtypeWithError()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("invisible"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("invisible"), driver);
 	      element1.sendkeys("sdsdsd");
 	   }
 
@@ -111,7 +111,7 @@ public class GuiElementTest
 	   public void testtypeWithoutClear()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.typeWithoutClear("ru");
 	      Assert.assertEquals(element1.getValue(), "sdsdsdru");
@@ -121,7 +121,7 @@ public class GuiElementTest
 	   public void testtypeSlowWithoutClear()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.typeSlowWithoutClear("ru");
 	      Assert.assertEquals(element1.getValue(), "sdsdsdru");
@@ -131,7 +131,7 @@ public class GuiElementTest
 	   public void testtypeSlowWithoutClear2()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.typeSlowWithoutClear("");
 	      Assert.assertEquals(element1.getValue(), "sdsdsd");
@@ -141,7 +141,7 @@ public class GuiElementTest
 	   public void testTypeSlowWithoutClear()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.typeSlowWithoutClear("ru");
 	      Assert.assertEquals(element1.getValue(), "sdsdsdru");
@@ -151,7 +151,7 @@ public class GuiElementTest
 	   public void testTypeSlowWithClearAndWithEnter()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.typeSlowWithClearAndWithEnter("ru");
 	      Assert.assertEquals(element1.getValue(), "");
@@ -161,7 +161,7 @@ public class GuiElementTest
 	   public void testClearInput1()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.clearInput();
 	      Assert.assertEquals(element1.getValue(), "");
@@ -171,7 +171,7 @@ public class GuiElementTest
 	   public void testClearInput2()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.clearInput(1);
 	      Assert.assertEquals(element1.getValue(), "sdsds");
@@ -181,7 +181,7 @@ public class GuiElementTest
 	   public void testClearInput3()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.clearInput(0);
 	      Assert.assertEquals(element1.getValue(), "sdsdsd");
@@ -191,7 +191,7 @@ public class GuiElementTest
 	   public void testClearInput4()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      element1.clearInput(-1);
 	      Assert.assertEquals(element1.getValue(), "sdsdsd");
@@ -201,7 +201,7 @@ public class GuiElementTest
 	   public void testGetValueForInvisibleElement()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("invisible"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("invisible"), driver);
 	      Assert.assertEquals(element1.getValueForInvisibleElement(), "test");
 	   }
 
@@ -209,7 +209,7 @@ public class GuiElementTest
 	   public void testGetValue()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("firstname"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("firstname"), driver);
 	      element1.sendkeys("sdsdsd");
 	      Assert.assertEquals(element1.getValue(), "sdsds");
 	   }
@@ -218,7 +218,7 @@ public class GuiElementTest
 	   public void testOpenMenu()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("invisible"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("invisible"), driver);
 	      element1.openMenu();
 	      Assert.assertTrue(element1.isVisible());
 	   }
@@ -227,9 +227,9 @@ public class GuiElementTest
 	   public void testMouseOver()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("mouseover"), driver);
+	      WebBaseElement element1 = new WebBaseElement(By.id("mouseover"), driver);
 	      element1.mouseOverClick();
-	      GuiElement element2 = new GuiElement(By.id("hidden"), driver, "Beschreibung");
+	      WebBaseElement element2 = new WebBaseElement(By.id("hidden"), driver, "Beschreibung");
 	      Assert.assertTrue(element2.isVisible());
 	   }
 
@@ -237,7 +237,7 @@ public class GuiElementTest
 	   public void testGetInvisibleText()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("hidden"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("hidden"), driver, "Beschreibung");
 	      Assert.assertEquals(element1.getText(), "");
 	   }
 	   
@@ -245,7 +245,7 @@ public class GuiElementTest
 	   public void testGetVisibleText()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("visibletext"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("visibletext"), driver, "Beschreibung");
 	      Assert.assertEquals(element1.getText(), "visibtext");
 	   }
 	   
@@ -253,7 +253,7 @@ public class GuiElementTest
 	   public void testGetInvisibleTextOrNull()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("hid4den"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("hid4den"), driver, "Beschreibung");
 	      String text = element1.getTextOrNull();
 	      Assert.assertTrue(text == null);
 	   }
@@ -262,7 +262,7 @@ public class GuiElementTest
 	   public void testGetVisibleTextOrNull()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("visibletext"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("visibletext"), driver, "Beschreibung");
 	      Assert.assertEquals(element1.getTextOrNull(), "visibtext");
 	   }
 	   
@@ -270,7 +270,7 @@ public class GuiElementTest
 	   public void testIsReadOnlyAndDisable()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("lastname"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("lastname"), driver, "Beschreibung");
 	      Assert.assertTrue(element1.isReadOnlyAndDisable());
 	   }
 	   
@@ -278,7 +278,7 @@ public class GuiElementTest
 	   public void testIsDisable()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("lastname"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("lastname"), driver, "Beschreibung");
 	      Assert.assertTrue(element1.isDisabled());
 	   }
 	   
@@ -286,7 +286,7 @@ public class GuiElementTest
 	   public void testIsDisabledAttribute()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("lastname"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("lastname"), driver, "Beschreibung");
 	      Assert.assertTrue(element1.isDisabledAttribute());
 	   }
 	   
@@ -294,7 +294,7 @@ public class GuiElementTest
 	   public void testGetAttribute()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("visibletext"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("visibletext"), driver, "Beschreibung");
 	      Assert.assertEquals(element1.getAttribute("attr"), "test");
 	   }
 	   
@@ -302,7 +302,7 @@ public class GuiElementTest
 	   public void testScrollToElement()
 	   {
 	      WebDriver driver = initialize("page1");
-	      GuiElement element1 = new GuiElement(By.id("distanttext"), driver, "Beschreibung");
+	      WebBaseElement element1 = new WebBaseElement(By.id("distanttext"), driver, "Beschreibung");
 	      element1.scrollToElement();
 	      Assert.assertTrue(element1.isVisible());
 	   }

@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import de.clearit.test.common.SeitenladePruefer;
-import de.clearit.test.framework.elemente.GuiElement;
+import de.clearit.test.framework.elemente.WebBaseElement;
 import de.clearit.test.pages.HinweisPage;
 
 /**
@@ -141,9 +141,9 @@ public class PageObject
                WebDriverInjectable webDriverVerwender = (WebDriverInjectable) value;
                webDriverVerwender.setDriver(driver);
             }
-            if (value instanceof GuiElement)
+            if (value instanceof WebBaseElement)
             {
-               GuiElement guielement = (GuiElement) value;
+               WebBaseElement guielement = (WebBaseElement) value;
                if (field.isAnnotationPresent(Check.class) && waitForVisible)
                {
                   guielement.waitForVisible();
@@ -230,7 +230,7 @@ public class PageObject
     * @param text
     *           - Der Logzeilentext für den Test
     */
-   public void clickWithPageChange(final GuiElement element, final String text)
+   public void clickWithPageChange(final WebBaseElement element, final String text)
    {
       if (!(text.isEmpty()))
       {

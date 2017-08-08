@@ -88,7 +88,7 @@ public class PageObjectTest
 		   System.setProperty("profiler", "true");
 		   
 	     TestPage testPage = new TestPage(driver);
-	     testPage.clickWithPageChange(new GuiElement(By.id("navigationLink"),  driver), "Tstsprung");
+	     testPage.clickWithPageChange(new WebBaseElement(By.id("navigationLink"),  driver), "Tstsprung");
 	     Test2Page test2Page = new Test2Page(driver);
 	     final String umgebung = System.getProperty("umgebung", "local");
 	     DateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");

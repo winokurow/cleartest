@@ -20,7 +20,7 @@ public class SelectElementTest
 	   public void testSelect()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      element1.select("opt2");
 	      
 	      Assert.assertEquals(element1.getTextSelectedOption(), "Text2");
@@ -30,7 +30,7 @@ public class SelectElementTest
 	   public void testSelectNull()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      element1.select(null);
 	      
 	      Assert.assertEquals(element1.getTextSelectedOption(), "Text1");
@@ -41,7 +41,7 @@ public class SelectElementTest
 	   public void testSelectEmpty()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      element1.select("");
 	      
 	      Assert.assertEquals(element1.getTextSelectedOption(), "Text1");
@@ -52,7 +52,7 @@ public class SelectElementTest
 	   public void testSelectByText()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      element1.selectByVisibleText("Text2");
 	      
 	      Assert.assertEquals(element1.getTextSelectedOption(), "Text2");
@@ -62,7 +62,7 @@ public class SelectElementTest
 	   public void testSelectByTextNull()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      element1.selectByVisibleText(null);
 	      
 	      Assert.assertEquals(element1.getTextSelectedOption(), "Text1");
@@ -72,7 +72,7 @@ public class SelectElementTest
 	   public void testSelectByTextEmpty()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      element1.selectByVisibleText("");
 	      
 	      Assert.assertEquals(element1.getTextSelectedOption(), "Text1");
@@ -82,7 +82,7 @@ public class SelectElementTest
 	   public void testGetOptionsList()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      List<WebElement> options = element1.getOptionsList();
 	      
 	      Assert.assertEquals(options.size(), 4);
@@ -92,7 +92,7 @@ public class SelectElementTest
 	   public void testIsOptionActive()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      element1.select("opt2");
 	      
 	      Assert.assertTrue(element1.isOptionActive("opt2"));
@@ -102,7 +102,7 @@ public class SelectElementTest
 	   public void testGetOptionsTextList()
 	   {
 	      WebDriver driver = initialize("pageSelect");
-	      SelectElement element1 = new SelectElement(By.id("selectElement"), driver);
+	      WebSelectElement element1 = new WebSelectElement(By.id("selectElement"), driver);
 	      List<String> options = element1.getOptionsTextList();
 	      
 	      Assert.assertEquals(options.size(), 4);

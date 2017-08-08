@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import de.clearit.test.framework.elemente.GuiElement;
+import de.clearit.test.framework.elemente.WebBaseElement;
 
 /**
  * IEWebDriverCreator.<br>
@@ -70,7 +70,7 @@ public final class IEWebDriverCreator
 
       driver.get(url);
 
-      GuiElement overridelink = new GuiElement(By.id("overridelink"), driver);
+      WebBaseElement overridelink = new WebBaseElement(By.id("overridelink"), driver);
       if (overridelink.isPresent())
       {
          driver.get("javascript:document.getElementById('overridelink').click();");

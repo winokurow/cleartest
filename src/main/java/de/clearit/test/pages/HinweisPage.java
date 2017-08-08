@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import de.clearit.test.common.SeitenladePruefer;
 import de.clearit.test.data.HinweisBestaetigung;
 import de.clearit.test.framework.PageObject;
-import de.clearit.test.framework.elemente.GuiElement;
+import de.clearit.test.framework.elemente.WebBaseElement;
 
 /**
  * Hinweis.
@@ -17,14 +17,14 @@ public class HinweisPage extends PageObject
 {
 
    /* Text */
-   protected GuiElement text;
+   protected WebBaseElement text;
 
-   protected GuiElement bestaetigenButton;
+   protected WebBaseElement bestaetigenButton;
 
-   protected GuiElement abbrechenButton;
+   protected WebBaseElement abbrechenButton;
 
    /* Dialog */
-   protected GuiElement dialog;
+   protected WebBaseElement dialog;
 
    /* Der Text */
    protected String textLocator = "//div[contains(@id,':%s')]/div[2]/div[1]/div[1]";
@@ -66,10 +66,10 @@ public class HinweisPage extends PageObject
       this.driver = driver;
       logger = Logger.getLogger("Hinweis-Dialog");
 
-      bestaetigenButton = new GuiElement(By.cssSelector(String.format(bestaetigenButtonLocator, dialogIDpart)), driver);
-      abbrechenButton = new GuiElement(By.cssSelector(String.format(abbrechenButtonLocator, dialogIDpart)), driver);
-      dialog = new GuiElement(By.cssSelector(String.format(dailogLocator, dialogIDpart)), driver);
-      text = new GuiElement(By.cssSelector(String.format(textLocator, dialogIDpart)), driver);
+      bestaetigenButton = new WebBaseElement(By.cssSelector(String.format(bestaetigenButtonLocator, dialogIDpart)), driver);
+      abbrechenButton = new WebBaseElement(By.cssSelector(String.format(abbrechenButtonLocator, dialogIDpart)), driver);
+      dialog = new WebBaseElement(By.cssSelector(String.format(dailogLocator, dialogIDpart)), driver);
+      text = new WebBaseElement(By.cssSelector(String.format(textLocator, dialogIDpart)), driver);
       if (checkElements)
       {
          waitForMainElementsIsShown();

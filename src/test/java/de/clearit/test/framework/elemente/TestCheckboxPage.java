@@ -12,9 +12,9 @@ import de.clearit.test.pages.LoggedInPage;
 
 public class TestCheckboxPage extends PageObject{
 	@Check
-	GuiElement lastname = new GuiElement(By.id("lastname"));
+	WebBaseElement lastname = new WebBaseElement(By.id("lastname"));
 	
-	GuiElement firstname = new GuiElement(By.id("firstname"));
+	WebBaseElement firstname = new WebBaseElement(By.id("firstname"));
 	public TestCheckboxPage(WebDriver driver)
 	{
 		this.driver = driver;

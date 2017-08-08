@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
  * 
  * @author Ilja Winokurow
  */
-public class CheckboxElement extends GuiElement
+public class WebCheckboxElement extends WebBaseElement
 {
 
    /**
@@ -17,7 +17,7 @@ public class CheckboxElement extends GuiElement
     * @param by
     *           - Locator des Elements (By)
     */
-   public CheckboxElement(final By by)
+   public WebCheckboxElement(final By by)
    {
       this(by, null);
    }
@@ -31,7 +31,7 @@ public class CheckboxElement extends GuiElement
     *           - WebDriver instance to use.
     * 
     */
-   public CheckboxElement(final By by, final WebDriver driver)
+   public WebCheckboxElement(final By by, final WebDriver driver)
    {
       super(by, driver);
    }

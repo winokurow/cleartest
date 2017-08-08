@@ -8,7 +8,7 @@ import de.clearit.test.common.ErrorPageHelper;
 import de.clearit.test.data.HinweisBestaetigung;
 import de.clearit.test.framework.ExecutionTimerManager;
 import de.clearit.test.framework.PageObject;
-import de.clearit.test.framework.elemente.GuiElement;
+import de.clearit.test.framework.elemente.WebBaseElement;
 
 /**
  * Page Logged in (menu).
@@ -22,7 +22,7 @@ public class LoggedInPage extends PageObject
    protected LoggedInPage previousPage;
 
    /* Der Text 'Maskenname' */
-   protected GuiElement maskennameText = new GuiElement(By.cssSelector("div[id*=':headerPanel'] h3"));
+   protected WebBaseElement maskennameText = new WebBaseElement(By.cssSelector("div[id*=':headerPanel'] h3"));
 
    public static final String MASKENAENDERUNG_HINWEIS_DIALOG = "maskenaenderungHinweisDialog_dialog";
 
@@ -229,7 +229,7 @@ public class LoggedInPage extends PageObject
     *
     * @return - ob das Element aktiv ist
     */
-   protected boolean isElementAktiv(final GuiElement element, String elementName)
+   protected boolean isElementAktiv(final WebBaseElement element, String elementName)
    {
       boolean isReadOnly = false;
       element.waitForVisible();
@@ -260,7 +260,7 @@ public class LoggedInPage extends PageObject
     * @return vorherige Seite
     *
     */
-   protected LoggedInPage doClickButtonAbbrechen(GuiElement abbrechenButton, String dialogID)
+   protected LoggedInPage doClickButtonAbbrechen(WebBaseElement abbrechenButton, String dialogID)
    {
       clickWithPageChange(abbrechenButton, "Den Button 'Abbrechen' betätigen.");
       if (!(dialogID.isEmpty()))
@@ -288,7 +288,7 @@ public class LoggedInPage extends PageObject
     * 
     * @return den Wert
     */
-   protected String doGetValue(GuiElement element, String description)
+   protected String doGetValue(WebBaseElement element, String description)
    {
       String value = element.getValue();
       logger.info(description + " = " + value);

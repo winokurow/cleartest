@@ -12,7 +12,7 @@ import de.clearit.test.pages.LoggedInPage;
 
 public class Test2Page extends PageObject{
 	@Check
-	GuiElement message = new GuiElement(By.id("message"));
+	WebBaseElement message = new WebBaseElement(By.id("message"));
 	
 	public Test2Page(WebDriver driver)
 	{

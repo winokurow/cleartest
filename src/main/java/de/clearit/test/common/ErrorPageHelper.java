@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import de.clearit.test.framework.WebDriverInjectable;
-import de.clearit.test.framework.elemente.GuiElement;
+import de.clearit.test.framework.elemente.WebBaseElement;
 
 /**
  * Überprüfen die Fehlermeldungen
@@ -22,7 +22,7 @@ public class ErrorPageHelper implements WebDriverInjectable
    private WebDriver driver;
 
    /* Der Text der Meldung */
-   protected GuiElement messageText = new GuiElement(By.cssSelector("ul[id*='messages'] span"));
+   protected WebBaseElement messageText = new WebBaseElement(By.cssSelector("ul[id*='messages'] span"));
 
    /**
     * Fehlermeldung auslesen

@@ -17,7 +17,7 @@ import de.clearit.test.common.SeitenladePruefer;
  * 
  * @author Ilja Winokurow
  */
-public class SelectElement extends GuiElement
+public class WebSelectElement extends WebBaseElement
 {
 
    /* Select Element */
@@ -30,7 +30,7 @@ public class SelectElement extends GuiElement
     *           - Locator des Elements (By)
     * 
     */
-   public SelectElement(final By by)
+   public WebSelectElement(final By by)
    {
       super(by);
    }
@@ -43,7 +43,7 @@ public class SelectElement extends GuiElement
     * @param driver
     *           - WebDriver instance to use.
     */
-   public SelectElement(final By by, final WebDriver driver)
+   public WebSelectElement(final By by, final WebDriver driver)
    {
       super(by, driver);
    }
@@ -58,7 +58,7 @@ public class SelectElement extends GuiElement
     * @param timeOutInSeconds
     *           - WebDriver timeout for this element.
     */
-   public SelectElement(final By by, final WebDriver driver, final long timeOutInSeconds)
+   public WebSelectElement(final By by, final WebDriver driver, final long timeOutInSeconds)
    {
       super(by, driver, timeOutInSeconds);
    }
@@ -79,7 +79,7 @@ public class SelectElement extends GuiElement
          waitForVisible();
          String newValue = value.replace("EMPTY", "");
          newSelectElementMitStaleRetry();
-         GuiElement option = new GuiElement(By.cssSelector("option[value='" + newValue + "']"), driver);
+         WebBaseElement option = new WebBaseElement(By.cssSelector("option[value='" + newValue + "']"), driver);
          option.waitForPresent();
          selectElement.selectByValue(newValue);
          SeitenladePruefer.mitDriver(driver).waitForPageIsLoad();
